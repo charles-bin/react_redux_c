@@ -12,11 +12,3 @@ ReactDOM.render(
   document.getElementById('root')
 );
 registerServiceWorker();
-
-let a = 1, b = 1, c;
-for(let x = 0; x < 100; x++) {
-  c = a + b;
-  a = b;
-  b = c;
-  console.log(c)
-}

@@ -8,6 +8,7 @@ import {
 } from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
+import Channel from '../components/Channel'
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class AsyncApp extends Component {
     const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
     return (
       <div>
+        <Channel />
         <Picker
           value={selectedSubreddit}
           onChange={this.handleChange}
