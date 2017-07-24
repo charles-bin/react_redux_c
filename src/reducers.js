@@ -3,7 +3,8 @@ import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
   REQUEST_POSTS,
-  RECEIVE_POSTS
+  RECEIVE_POSTS,
+  SELECT_CHANNEL,
 } from './actions'
 
 function selectedSubreddit(state = 'reactjs', action) {
@@ -62,6 +63,15 @@ function postsBySubreddit(state = {}, action) {
   }
 }
 
+function selectedChannel(state='default', action) {
+  switch (action.type) {
+    case SELECT_CHANNEL:
+      return action.channel;
+    default:
+      return state;
+  }
+}
+
 /* This combineReducers() just uses the reducer function names as keys with the result:
   state = {
     postsBySubreddit: Object,
@@ -70,7 +80,8 @@ function postsBySubreddit(state = {}, action) {
 */
 const rootReducer = combineReducers({
   postsBySubreddit,
-  selectedSubreddit
+  selectedSubreddit,
+  selectedChannel,
 })
 
 export default rootReducer

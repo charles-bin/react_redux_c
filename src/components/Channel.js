@@ -5,7 +5,7 @@ export default class Channel extends React.Component {
   render() {
     return (
       <div>
-        <h3>channel name</h3>
+        <h3>{ this.props.channel }</h3>
         <Video />
       </div>
     );
