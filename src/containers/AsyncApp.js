@@ -99,4 +99,7 @@ function mapStateToProps(state) {
   }
 }
 
+/* Any component wrapped with connect() call will receive a dispatch function as a prop,
+  and any state it needs from the global state.
+*/
 export default connect(mapStateToProps)(AsyncApp)
