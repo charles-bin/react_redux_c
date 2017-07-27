@@ -5,6 +5,7 @@ import {
   REQUEST_POSTS,
   RECEIVE_POSTS,
   SELECT_CHANNEL,
+  REQUEST_CHANNEL,
 } from './actions'
 
 function selectedSubreddit(state = 'reactjs', action) {
@@ -72,6 +73,16 @@ function selectedChannel(state='default', action) {
   }
 }
 
+function requestChannel(state='', action) {
+  console.log('requestChannel reducer call');
+  switch (action.type) {
+    case REQUEST_CHANNEL:
+      return action.username;
+    default:
+      return state;
+  }
+}
+
 /* This combineReducers() just uses the reducer function names as keys with the result:
   state = {
     postsBySubreddit: Object,
@@ -82,6 +93,7 @@ const rootReducer = combineReducers({
   postsBySubreddit,
   selectedSubreddit,
   selectedChannel,
+  requestChannel,
 })
 
 export default rootReducer

@@ -1,10 +1,13 @@
 import fetch from 'isomorphic-fetch'
+import initAuthClient from './authentication'
 
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT'
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT'
 export const SELECT_CHANNEL = 'SELECT_CHANNEL'
+export const LOAD_AUTH_CLIENT = 'LOAD_AUTH_CLIENT'
+export const REQUEST_CHANNEL = 'REQUEST_CHANNEL'
 
 // Each of these are called "action creators"
 export function selectChannel(channel) {
@@ -69,5 +72,19 @@ export function fetchPostsIfNeeded(subreddit) {
     if (shouldFetchPosts(getState(), subreddit)) {
       return dispatch(fetchPosts(subreddit))
     }
+  }
+}
+
+export function loadAuthClient() {
+  initAuthClient();
+  return {
+    type: LOAD_AUTH_CLIENT,
+  }
+}
+
+export function requestChannel(username) {
+  return {
+    type: REQUEST_CHANNEL,
+    username
   }
 }
