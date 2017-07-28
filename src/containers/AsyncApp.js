@@ -56,14 +56,14 @@ class AsyncApp extends Component {
 
   render() {
     console.log('AsyncApp.render')
-    const { selectedSubreddit, posts, isFetching, lastUpdated, selectedChannel } = this.props
+    const { selectedSubreddit, posts, isFetching, lastUpdated, requestedChannel } = this.props
     return (
       <div>
         <input
           type='search'
           onKeyPress={this.handleSearchEnter}
         />
-        <Channel channel={selectedChannel}/>
+        <Channel channel={requestedChannel}/>
         <Picker
           value={selectedSubreddit}
           onChange={this.handleChange}
@@ -97,14 +97,14 @@ AsyncApp.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
-  selectedChannel: PropTypes.string.isRequired,
+  requestedChannel: PropTypes.string.isRequired,
 }
 
 /* By default, the entire state is provided to the AsyncApp component through the prop variable.
   This function can filter/modify the prop values before they reach the component.
 */
 function mapStateToProps(state) {
-  const { selectedSubreddit, postsBySubreddit, selectedChannel } = state
+  const { selectedSubreddit, postsBySubreddit, requestedChannel } = state
   const { isFetching, lastUpdated, items: posts } = postsBySubreddit[selectedSubreddit] || { isFetching: true, items: [] }
 
   return {
@@ -112,7 +112,7 @@ function mapStateToProps(state) {
     posts,
     isFetching,
     lastUpdated,
-    selectedChannel,
+    requestedChannel,
   }
 }
 

@@ -6,21 +6,20 @@ import {
 } from './twitter'
 
 import {
-  selectedChannel,
-  requestChannel,
+  requestedChannel,
 } from './youtube'
 
 /* The function combineReducers() just uses function names as keys with the result:
   state = {
     postsBySubreddit: Object,
-    selectedSubreddit: "reactjs"
+    selectedSubreddit: "reactjs",
+    requestedChannel: "BBCEarth",
   }
 */
 const rootReducer = combineReducers({
   postsBySubreddit,
   selectedSubreddit,
-  selectedChannel,
-  requestChannel,
+  requestedChannel,
 })
 
 export default rootReducer
