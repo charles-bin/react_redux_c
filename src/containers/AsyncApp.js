@@ -7,7 +7,7 @@ import {
   invalidateSubreddit,
   loadAuthClient,
   requestChannel,
-} from '../actions'
+} from '../actions/index'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import Channel from '../components/Channel'
@@ -21,6 +21,7 @@ class AsyncApp extends Component {
   }
 
   componentDidMount() {
+    console.log('AsyncApp.componentDidMount')
     const { dispatch, selectedSubreddit } = this.props
     dispatch(fetchPostsIfNeeded(selectedSubreddit))
     dispatch(loadAuthClient())
@@ -47,13 +48,14 @@ class AsyncApp extends Component {
   }
 
   handleSearchEnter(e) {
-    if(e.key == 'Enter') {
+    if(e.key === 'Enter') {
       const { dispatch } = this.props;
       dispatch(requestChannel(e.target.value));
     }
   }
 
   render() {
+    console.log('AsyncApp.render')
     const { selectedSubreddit, posts, isFetching, lastUpdated, selectedChannel } = this.props
     return (
       <div>

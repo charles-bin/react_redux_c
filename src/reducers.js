@@ -6,7 +6,7 @@ import {
   RECEIVE_POSTS,
   SELECT_CHANNEL,
   REQUEST_CHANNEL,
-} from './actions'
+} from './actions/index'
 
 function selectedSubreddit(state = 'reactjs', action) {
   switch (action.type) {

@@ -34,9 +34,11 @@ export default function initAuthClient() {
           'playlistId': playlistId
         }).then(function(response) {
           var items = response.result.items;
+          /*
           items.forEach(function(element) {
             console.log(element.snippet.title);
           });
+          */
         });
 
       });

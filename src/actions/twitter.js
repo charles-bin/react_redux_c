@@ -1,21 +1,9 @@
 import fetch from 'isomorphic-fetch'
-import initAuthClient from './authentication'
 
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT'
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT'
-export const SELECT_CHANNEL = 'SELECT_CHANNEL'
-export const LOAD_AUTH_CLIENT = 'LOAD_AUTH_CLIENT'
-export const REQUEST_CHANNEL = 'REQUEST_CHANNEL'
-
-// Each of these are called "action creators"
-export function selectChannel(channel) {
-  return {
-    type: SELECT_CHANNEL,
-    channel
-  }
-}
 
 export function selectSubreddit(subreddit) {
   return {
@@ -67,24 +55,13 @@ function shouldFetchPosts(state, subreddit) {
   }
 }
 
+/* If a function is passed into dispatch() instead of a plain object,
+  that function will be called with the two arguments (dispatch, getState).
+*/
 export function fetchPostsIfNeeded(subreddit) {
   return (dispatch, getState) => {
     if (shouldFetchPosts(getState(), subreddit)) {
       return dispatch(fetchPosts(subreddit))
     }
-  }
-}
-
-export function loadAuthClient() {
-  initAuthClient();
-  return {
-    type: LOAD_AUTH_CLIENT,
-  }
-}
-
-export function requestChannel(username) {
-  return {
-    type: REQUEST_CHANNEL,
-    username
   }
 }
