@@ -1,14 +1,11 @@
-import { combineReducers } from 'redux'
 import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
   REQUEST_POSTS,
   RECEIVE_POSTS,
-  SELECT_CHANNEL,
-  REQUEST_CHANNEL,
-} from './actions/index'
+} from '../actions/index'
 
-function selectedSubreddit(state = 'reactjs', action) {
+export function selectedSubreddit(state = 'reactjs', action) {
   switch (action.type) {
     case SELECT_SUBREDDIT:
       return action.subreddit
@@ -47,7 +44,7 @@ function posts(
   }
 }
 
-function postsBySubreddit(state = {}, action) {
+export function postsBySubreddit(state = {}, action) {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
     case RECEIVE_POSTS:
@@ -63,37 +60,3 @@ function postsBySubreddit(state = {}, action) {
       return state
   }
 }
-
-function selectedChannel(state='default', action) {
-  switch (action.type) {
-    case SELECT_CHANNEL:
-      return action.channel;
-    default:
-      return state;
-  }
-}
-
-function requestChannel(state='', action) {
-  console.log('requestChannel reducer call');
-  switch (action.type) {
-    case REQUEST_CHANNEL:
-      return action.username;
-    default:
-      return state;
-  }
-}
-
-/* This combineReducers() just uses the reducer function names as keys with the result:
-  state = {
-    postsBySubreddit: Object,
-    selectedSubreddit: "reactjs"
-  }
-*/
-const rootReducer = combineReducers({
-  postsBySubreddit,
-  selectedSubreddit,
-  selectedChannel,
-  requestChannel,
-})
-
-export default rootReducer
