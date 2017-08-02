@@ -6,8 +6,9 @@ import {
 } from './twitter'
 
 import {
-  isAuthClientLoaded,
+  authClientLoaded,
   requestedChannel,
+  requestedChannelResources,
 } from './youtube'
 
 /* The function combineReducers() just uses function names as keys with the result:
@@ -20,8 +21,9 @@ import {
 const rootReducer = combineReducers({
   postsBySubreddit,
   selectedSubreddit,
-  isAuthClientLoaded,
+  authClientLoaded,
   requestedChannel,
+  requestedChannelResources,
 })
 
 export default rootReducer
