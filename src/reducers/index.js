@@ -6,6 +6,7 @@ import {
 } from './twitter'
 
 import {
+  isAuthClientLoaded,
   requestedChannel,
 } from './youtube'
 
@@ -19,6 +20,7 @@ import {
 const rootReducer = combineReducers({
   postsBySubreddit,
   selectedSubreddit,
+  isAuthClientLoaded,
   requestedChannel,
 })
 

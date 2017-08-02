@@ -55,8 +55,11 @@ function shouldFetchPosts(state, subreddit) {
   }
 }
 
-/* If a function is passed into dispatch() instead of a plain object,
-  that function will be called with the two arguments (dispatch, getState).
+/*
+  If a function is passed into dispatch() instead of a plain object,
+  dispatch() will pass itself into the function as the first argument,
+  and the state of the store as the second, making dispatch() available
+  without needing to import it.
 */
 export function fetchPostsIfNeeded(subreddit) {
   return (dispatch, getState) => {
