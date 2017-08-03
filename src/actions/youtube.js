@@ -60,7 +60,6 @@ function fetchChannel(username) {
       'forUsername': username
     }).then(function(response) {
       let channel = response.result.items[0]
-
       dispatch(receiveChannelResources(channel))
     })
   }
