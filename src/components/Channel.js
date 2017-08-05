@@ -33,13 +33,13 @@ export default class Channel extends React.Component {
         />
 
         <ResourceTable
-          title="Content Details"
-          resources={ channel.contentDetails }
+          title="Related Playlists"
+          resources={ channel.contentDetails.relatedPlaylists }
         />
 
         <ResourceTable
           title="Branding Settings"
-          resources={ channel.brandingSettings }
+          resources={ channel.brandingSettings.channel }
         />
       </div>
     )

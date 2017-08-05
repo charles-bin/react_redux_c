@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'react-bootstrap'
+import { Table, Image } from 'react-bootstrap'
 
 export default function ResourceTable(props) {
   const { title, resources } = props
@@ -9,18 +9,25 @@ export default function ResourceTable(props) {
       <Table striped bordered condensed hover>
         <thead>
           <tr>
-            <th style={{width: '150px'}}>Resource</th>
+            <th style={{width: '160px'}}>Resource</th>
             <th>Value</th>
           </tr>
         </thead>
         <tbody>
           { Object.keys(resources).map(function(v) {
+            const toRender = (v === "thumbnails" ||
+              typeof(resources[v]) === "string" ||
+              typeof(resources[v]) === "boolean")
             return (
-              typeof(resources[v]) === "string" &&
-                <tr key={v}>
-                  <td>{v}</td>
-                  <td>{resources[v]}</td>
-                </tr>
+              toRender &&
+              <tr key={v}>
+                <td>{v}</td>
+                <td>
+                  { v === "thumbnails" ?
+                    <Image src={resources[v].default.url} /> :
+                    resources[v].toString() }
+                </td>
+              </tr>
             )
           })}
         </tbody>
