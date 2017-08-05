@@ -11,6 +11,10 @@ import {
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import Channel from '../components/Channel'
+import Search from '../components/Search'
+import { Grid, Row, Col, Image } from 'react-bootstrap'
+import logo from '../logo.svg'
+import './AsyncApp.css'
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -63,38 +67,60 @@ class AsyncApp extends Component {
       requestedChannel,
       requestedChannelResources
     } = this.props
+
     return (
       <div>
-        <input
-          type='search'
-          onKeyPress={this.handleSearchEnter}
-        />
-        <Channel
-          requestedChannel={requestedChannel}
-          channel={requestedChannelResources}
-        />
-        <Picker
-          value={selectedSubreddit}
-          onChange={this.handleChange}
-          options={['reactjs', 'frontend']}
-        />
-        <p>
-          {lastUpdated &&
-            <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-              {' '}
-            </span>}
-          {!isFetching &&
-            <a href="#" onClick={this.handleRefreshClick}>
-              Refresh
-            </a>}
-        </p>
-        {isFetching && posts.length === 0 && <h2>Loading...</h2>}
-        {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
-        {posts.length > 0 &&
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Posts posts={posts} />
-          </div>}
+        <Grid>
+          <Row className="App-header">
+            <Col md={4} mdOffset={4}>
+              <Image
+                src={logo}
+                className="App-logo"
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={4} mdOffset={4}>
+              <Search
+                id="formControlsText"
+                type="text"
+                label=""
+                placeholder="Channel name"
+                onKeyPress={this.handleSearchEnter}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Channel
+                requestedChannel={requestedChannel}
+                channel={requestedChannelResources}
+              />
+              <Picker
+                value={selectedSubreddit}
+                onChange={this.handleChange}
+                options={['reactjs', 'frontend']}
+              />
+              <p>
+                {lastUpdated &&
+                  <span>
+                    Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+                    {' '}
+                  </span>}
+                {!isFetching &&
+                  <a href="#" onClick={this.handleRefreshClick}>
+                    Refresh
+                  </a>}
+              </p>
+              {isFetching && posts.length === 0 && <h2>Loading...</h2>}
+              {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
+              {posts.length > 0 &&
+                <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+                  <Posts posts={posts} />
+                </div>}
+            </Col>
+          </Row>
+        </Grid>
       </div>
     )
   }

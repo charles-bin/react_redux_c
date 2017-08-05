@@ -56,7 +56,7 @@ function fetchChannel(username) {
     dispatch(requestChannel(username))
 
     window.gapi.client.youtube.channels.list({
-      'part': 'snippet,contentDetails,statistics',
+      'part': 'snippet,contentDetails,statistics,brandingSettings,status',
       'forUsername': username
     }).then(function(response) {
       let channel = response.result.items[0]

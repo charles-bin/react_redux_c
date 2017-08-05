@@ -1,22 +1,47 @@
-import React from 'react';
-import Video from './Video';
+import React from 'react'
+import { Table } from 'react-bootstrap'
+import ResourceTable from './ResourceTable'
 
 export default class Channel extends React.Component {
   render() {
     const { requestedChannel, channel } = this.props
 
+    if (Object.getOwnPropertyNames(channel).length === 0) {
+      return null
+    }
+
     return (
       <div>
-        <h3>Showing results for { requestedChannel }</h3>
-        { Object.getOwnPropertyNames(channel).length !== 0 &&
-          <p>
-            This channel's ID is { channel.id }. Its title is { channel.snippet.title }
-            and it has { channel.statistics.viewCount } views.
-            The liked playlist ID is { channel.contentDetails.relatedPlaylists.likes }.
-          </p>
-        }
-        <Video />
+        <ResourceTable
+          title="Basic Resources"
+          resources={ channel }
+        />
+
+        <ResourceTable
+          title="Snippet"
+          resources={ channel.snippet }
+        />
+
+        <ResourceTable
+          title="Statistics"
+          resources={ channel.statistics }
+        />
+
+        <ResourceTable
+          title="Status"
+          resources={ channel.status }
+        />
+
+        <ResourceTable
+          title="Content Details"
+          resources={ channel.contentDetails }
+        />
+
+        <ResourceTable
+          title="Branding Settings"
+          resources={ channel.brandingSettings }
+        />
       </div>
-    );
+    )
   }
 }

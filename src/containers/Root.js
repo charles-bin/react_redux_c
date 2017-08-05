@@ -5,6 +5,9 @@ import AsyncApp from './AsyncApp'
 
 const store = configureStore()
 
+// !! To debug redux store from console
+window.store = store
+
 export default class Root extends Component {
   render() {
     return (
