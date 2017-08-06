@@ -1,10 +1,9 @@
 import React from 'react'
-import { Table } from 'react-bootstrap'
 import ResourceTable from './ResourceTable'
 
 export default class Channel extends React.Component {
   render() {
-    const { requestedChannel, channel } = this.props
+    const { channel } = this.props
 
     if (Object.getOwnPropertyNames(channel).length === 0) {
       return null

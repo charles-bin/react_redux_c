@@ -5,6 +5,11 @@
   margin-top: 200px;
 }
 
+@keyframes App-header-up {
+  from { margin-top: 200px; }
+  to { margin-top: 0px; }
+}
+
 .App-search {
   margin: 5px auto;
   width: 25%;
