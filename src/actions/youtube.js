@@ -48,7 +48,7 @@ export function fetchChannelIfNeeded(username) {
 }
 
 function shouldFetchChannel(state, username) {
-  return state.authClientLoaded
+  return state.authClientLoaded && username
 }
 
 function fetchChannel(username) {

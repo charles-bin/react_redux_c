@@ -24,7 +24,7 @@ export default function ResourceTable(props) {
                 <td>{v}</td>
                 <td>
                   { v === "thumbnails" ?
-                    <Image src={resources[v].medium.url} /> :
+                    <Image src={resources[v].default.url} /> :
                     resources[v].toString() }
                 </td>
               </tr>

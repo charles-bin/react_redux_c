@@ -32,8 +32,12 @@ class AsyncApp extends Component {
   render() {
     const {
       requestedChannel,
-      requestedChannelResources
+      requestedChannelResources,
+      isFetching,
     } = this.props
+
+    const channelNotFound = (requestedChannel !== '' &&
+      Object.keys(requestedChannelResources).length === 0)
 
     return (
       <div>
@@ -51,9 +55,9 @@ class AsyncApp extends Component {
               <Search
                 id="formControlsText"
                 type="text"
-                label=""
-                placeholder="Channel name"
+                placeholder=""
                 onKeyPress={this.handleSearchEnter}
+                channelNotFound={channelNotFound}
               />
             </Col>
           </Row>
@@ -74,17 +78,19 @@ AsyncApp.propTypes = {
   dispatch: PropTypes.func.isRequired,
   requestedChannel: PropTypes.string.isRequired,
   requestedChannelResources: PropTypes.object.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 }
 
 /* By default, the entire state is provided to the AsyncApp component through the prop variable.
   This function can filter/modify the prop values before they reach the component.
 */
 function mapStateToProps(state) {
-  const { requestedChannel, requestedChannelResources } = state
+  const { requestedChannel, requestedChannelResources, isFetching } = state
 
   return {
     requestedChannel,
     requestedChannelResources,
+    isFetching,
   }
 }
 
