@@ -25,10 +25,25 @@ export function requestedChannel(state='', action) {
   }
 }
 
-export function requestedChannelResources(state={}, action) {
+function isEmpty(object) {
+  return object === undefined || Object.keys(object).length === 0
+}
+
+export function requestedChannelResources(
+  state = {
+    resources: {},
+    prevCollapsed: false,
+    nextCollapsed: false,
+  },
+  action
+) {
   switch (action.type) {
     case RECEIVE_CHANNEL_RESOURCES:
-      return action.channel === undefined ? {} : action.channel
+      return Object.assign({}, {
+        resources: action.channel === undefined ? {} : action.channel,
+        prevCollapsed: state.nextCollapsed,
+        nextCollapsed: !isEmpty(action.channel),
+      })
     default:
       return state
   }

@@ -32,22 +32,27 @@ class AsyncApp extends Component {
   render() {
     const {
       requestedChannel,
-      requestedChannelResources,
       isFetching,
+      resources,
+      prevCollapsed,
+      nextCollapsed,
     } = this.props
 
-    const channelNotFound = (requestedChannel !== '' &&
-      Object.keys(requestedChannelResources).length === 0)
+    const channelNotFound = (requestedChannel !== '' && !isFetching &&
+      Object.keys(resources).length === 0)
+
+    const headerClass = prevCollapsed ?
+      (nextCollapsed ? "App-header-collapsed" : "App-header-expand") :
+      (nextCollapsed ? "App-header-collapse" : "App-header-expanded")
 
     return (
       <div>
         <Grid>
-          <Row className="App-header">
+          <Row>
             <Col md={4} mdOffset={4}>
-              <Image
-                src={logo}
-                className="App-logo"
-              />
+              <div className={headerClass}>
+                <Image src={logo} className="App-logo" />
+              </div>
             </Col>
           </Row>
           <Row>
@@ -63,9 +68,7 @@ class AsyncApp extends Component {
           </Row>
           <Row>
             <Col>
-              <Channel
-                channel={requestedChannelResources}
-              />
+              <Channel channel={resources} />
             </Col>
           </Row>
         </Grid>
@@ -77,8 +80,10 @@ class AsyncApp extends Component {
 AsyncApp.propTypes = {
   dispatch: PropTypes.func.isRequired,
   requestedChannel: PropTypes.string.isRequired,
-  requestedChannelResources: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  resources: PropTypes.object.isRequired,
+  prevCollapsed: PropTypes.bool.isRequired,
+  nextCollapsed: PropTypes.bool.isRequired,
 }
 
 /* By default, the entire state is provided to the AsyncApp component through the prop variable.
@@ -86,11 +91,14 @@ AsyncApp.propTypes = {
 */
 function mapStateToProps(state) {
   const { requestedChannel, requestedChannelResources, isFetching } = state
+  const { resources, prevCollapsed, nextCollapsed } = requestedChannelResources
 
   return {
     requestedChannel,
-    requestedChannelResources,
     isFetching,
+    resources,
+    prevCollapsed,
+    nextCollapsed,
   }
 }
 

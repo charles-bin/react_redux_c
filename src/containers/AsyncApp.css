@@ -1,14 +1,36 @@
 * {
 }
 
-.App-header {
+.App-header-expanded {
   margin-top: 200px;
   margin-bottom: 10px;
 }
 
-@keyframes App-header-up {
+.App-header-collapsed {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.App-header-expand {
+  animation: App-header-expand 1 2s;
+  margin-top: 200px;
+  margin-bottom: 10px;
+}
+
+@keyframes App-header-expand {
+  from { margin-top: 20px; }
+  to { margin-top: 200px; }
+}
+
+.App-header-collapse {
+  animation: App-header-collapse 1 2s;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+@keyframes App-header-collapse {
   from { margin-top: 200px; }
-  to { margin-top: 0px; }
+  to { margin-top: 20px; }
 }
 
 .App-logo {
